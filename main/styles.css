@@ -48,6 +48,21 @@ header h1 {
     margin-bottom: 10px;
 }
 
+.alert-message{
+    width: 100%;
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+}
+
+.alert-message.show{
+    display: block;
+    transform: scale(1);
+}
+
+.alert-message.hide{
+    display: none;
+}
+
 header .input-section {
     width: 100%;
     display: flex;
@@ -62,3 +77,4 @@ header .input-section {
     margin-right: 10px;
     max-width: 100%;
 }
+
