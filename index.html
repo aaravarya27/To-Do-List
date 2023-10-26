@@ -26,6 +26,18 @@
             </div>
         </header>
 
+        <div class="todos-filter">
+            <div class="dropdown">
+                <label tabindex="0" class="btn m-1">Filter</label>
+                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li onclick="filterTodos('all')"><a>All</a></li>
+                    <li onclick="filterTodos('pending')"><a>Pending</a></li>
+                    <li onclick="filterTodos('completed')"><a>Completed</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-secondary delete-all-btn">Delete All</button>
+        </div>
+
         <table class="table w-full">
             <thead>
                 <tr>
@@ -38,6 +50,8 @@
             <tbody class="todos-list-body">
             </tbody>
         </table>
+
+        
 
         
 </body>
