@@ -42,6 +42,12 @@ body{
     margin-bottom: 20px;
 }
 
+.theme-switcher{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
 header h1 {
     font-size: 30px;
     font-weight: 700;
