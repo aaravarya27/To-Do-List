@@ -84,3 +84,32 @@ function showAllTodos(){
     }  
   }
 
+function saveToLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function showAlertMessage(message, type) {
+  let alert_box = `
+        <div class="alert alert-${type} shadow-lg mb-5 w-full">
+            <div>
+                <span>
+                    ${message}
+                </span>
+            </div>
+        </div>
+    `;
+  alert_message.innerHTML = alert_box;
+  alert_message.classList.remove("hide");
+  alert_message.classList.add("show");
+  setTimeout(() => {
+    alert_message.classList.remove("show");
+    alert_message.classList.add("hide");
+  }, 2000);
+}
+
+function deleteTodo(id) {
+  todos = todos.filter((todo) => todo.id !== id);
+  saveToLocalStorage();
+  showAlertMessage("Todo deleted successfully", "success");
+  showAllTodos();
+}
