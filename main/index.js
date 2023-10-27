@@ -113,3 +113,26 @@ function deleteTodo(id) {
   showAlertMessage("Todo deleted successfully", "success");
   showAllTodos();
 }
+
+function editTodo(id) {
+  let todo = todos.find((todo) => todo.id === id);
+  task_input.value = todo.task;
+  todos = todos.filter((todo) => todo.id !== id);
+  add_btn.innerHTML = "<i class='bx bx-check bx-sm'></i>";
+  saveToLocalStorage();
+  add_btn.addEventListener("click", () => {
+    add_btn.innerHTML = "<i class='bx bx-plus bx-sm'></i>";
+    showAlertMessage("Todo updated successfully", "success");
+  });
+}
+
+function clearAllTodos() {
+  if (todos.length > 0) {
+    todos = [];
+    saveToLocalStorage();
+    showAlertMessage("All todos cleared successfully", "success");
+    showAllTodos();
+  } else {
+    showAlertMessage("No todos to clear", "error");
+  }
+}
