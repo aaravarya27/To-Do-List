@@ -7,6 +7,7 @@ const delete_all_btn = document.querySelector(".delete-all-btn");
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
+var flag = true;
 // event listener for rendering the homepage
 addEventListener("DOMContentLoaded", () => {
 displayTodos(todos);
@@ -15,6 +16,51 @@ displayTodos(todos);
   }
 });
 
+// enter event listener for adding a task 
+addEventListener("keydown", (e) => {
+    if(e.key === "Enter" && task_input.value.length > 0){
+      addToDo(task_input, date_input);
+      saveToLocalStorage();
+      task_input.value = "";
+      if(flag) showAlertMessage("Task added successfully", "success");
+      else{
+        showAlertMessage("Todo updated successfully", "success");
+        add_btn.innerHTML = "<i class='bx bx-plus bx-sm'></i>";
+        flag = true;
+        setTimeout(() => {
+            location.reload();
+        }, 1000);
+      } 
+      displayTodos(todos);
+    }
+    else if(e.key === "Enter" && task_input.value.length === 0){
+        if(flag) showAlertMessage("Please enter a task", "error");
+        else{
+          showAlertMessage("Please enter a task", "error");
+          add_btn.innerHTML = "<i class='bx bx-plus bx-sm'></i>";
+          flag = true;
+          setTimeout(() => {
+              location.reload();
+          }, 1000);
+        } 
+    }   
+  });
+
+// click event listener for add task button
+add_btn.addEventListener("click", () => {
+    if(task_input.value === "") showAlertMessage("Please enter a task", "error");
+    else{
+      addToDo(task_input, date_input); 
+      saveToLocalStorage();
+      displayTodos(todos);
+      task_input.value = "";
+      date_input.value = "";
+      showAlertMessage("Task added successfully", "success");
+    }
+  });
+
+delete_all_btn.addEventListener("click", clearAllTodos);
+
 // function to generate random ID
 function getRandomId(){
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -22,40 +68,15 @@ function getRandomId(){
 
 // create an object with details of the todo to be created and push in array
 function addToDo(task_input, date_input){
-  let task = {
-    id: getRandomId(),
-    task: task_input.value,
-    dueDate: date_input.value,
-    completed: false,
-    status: "pending",
-  };
-  todos.push(task);
+    let task = {
+        id: getRandomId(),
+        task: task_input.value,
+        dueDate: date_input.value,
+        completed: false,
+        status: "pending",
+      };
+      todos.unshift(task);
 }
-
-// enter event listener for adding a task 
-task_input.addEventListener("keydown", (e) => {
-  if(key === "Enter" && task_input.value.length > 0) {
-    addToDo(task_input, date_input);
-    saveToLocalStorage();
-    task_input.value = "";
-    displayTodos(todos);
-  }
-});
-
-// click event listener for add task button
-add_btn.addEventListener("click", () => {
-  if (task_input.value === "") showAlertMessage("Please enter a task", "error");
-  else{
-    addToDo(task_input, date_input); 
-    saveToLocalStorage();
-    displayTodos(todos);
-    task_input.value = "";
-    date_input.value = "";
-    showAlertMessage("Task added successfully", "success");
-  }
-});
-
-delete_all_btn.addEventListener("click", clearAllTodos);
 
 // function to save todos in browser local storage
 function saveToLocalStorage() {
@@ -79,7 +100,7 @@ function showAlertMessage(message, type) {
   setTimeout(() => {
     alert_message.classList.remove("show");
     alert_message.classList.add("hide");
-  }, 2000);
+  }, 1000);
 }
 
 // display all todos except the one selected i.e. delete that todo
@@ -92,15 +113,20 @@ function deleteTodo(id){
 
 // update a task through user input
 function editTodo(id){
-  let todo = todos.find((todo) => todo.id === id);
-  task_input.value = todo.task;
-  todos = todos.filter((todo) => todo.id !== id);
-  add_btn.innerHTML = "<i class='bx bx-check bx-sm'></i>";
-  saveToLocalStorage();
-  add_btn.addEventListener("click", () => {
-    add_btn.innerHTML = "<i class='bx bx-plus bx-sm'></i>";
-    showAlertMessage("Todo updated successfully", "success");
-  });
+    flag = false;
+    let todo = todos.find((todo) => todo.id === id);
+    let index = todos.findIndex((todo) => todo.id === id);
+    todos.splice(index,1);
+    task_input.value = todo.task;
+    add_btn.innerHTML = "<i class='bx bx-check bx-sm'></i>";
+    saveToLocalStorage();
+    add_btn.addEventListener("click", () => {
+        add_btn.innerHTML = "<i class='bx bx-plus bx-sm'></i>";
+        showAlertMessage("Todo updated successfully", "success");
+        setTimeout(() => {
+            location.reload();
+        }, 1000);
+    }, {once : true});
 }
 
 // function to clear the array of todos
@@ -155,8 +181,8 @@ function displayTodos(todosArray){
               <tr class="todo-item" data-id="${todo.id}">
                   <td class="divScroll-1">${todo.task}</td>
                   <td class="divScroll-2">${todo.dueDate || "No due date"}</td>
-                  <td calss="divScroll-2">${todo.completed ? "Completed" : "Pending"}</td>
-                  <td>
+                  <td style="text-align: center;">${todo.completed ? "Completed" : "Pending"}</td>
+                  <td style="text-align: center;">
                       <button class="btn btn-warning btn-sm" onclick="editTodo('${todo.id}')">
                           <i class="bx bx-edit-alt bx-bx-xs"></i>    
                       </button>

@@ -27,16 +27,18 @@ body{
 }
 
 .container {
+    margin: 0 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     flex-direction: column;
-    margin: 0 200px;
     background: rgba( 255, 255, 255, 0.15 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.3 );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 20px;
+    width: max-content;
+    max-width: 65%;
 }
 
 .container header {
@@ -131,12 +133,19 @@ header .input-section {
     word-break: break-word;
     white-space: normal;
     min-width: 16vw;
+    text-align: justify;
+
 }
 
 .divScroll-2{
     word-break: break-word;
     white-space: normal;
     min-width: 10vw;
+    text-align: center;
+}
+
+th{
+    text-align: center;
 }
 
 .todo-actions button:not(:last-child){
@@ -145,7 +154,7 @@ header .input-section {
 
 .theme-switcher{
     position: absolute;
-    top: 16px;
+    top: -5px;
     right: 16px;
 }
 
@@ -158,11 +167,6 @@ header .input-section {
     
     .theme-switcher{
         margin-right: 1.62%;
+        top: 16px
     } 
-
-   
-
-    /* .divScroll-1{
-        min-width: 16vw;
-    } */
 }
