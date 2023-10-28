@@ -1,4 +1,3 @@
-```
 # To-Do List Web Application Documentation
 
 ## Table of Contents
@@ -78,4 +77,3 @@ You can customize the application by modifying the HTML, CSS, and JavaScript fil
 index.html: Update the structure and layout of the application.
 style.css: Customize the visual styles of the application.
 index.js: Modify the behavior and functionality of the application.
-```
