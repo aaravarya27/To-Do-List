@@ -4,11 +4,11 @@
 - [Introduction](./README.md#1-introduction)
 - [Demo](./README.md#2-demo)
 - [Features](./README.md#3-features)
-- [Getting Started](https://github.com/aaravarya27/To-Do-List/edit/main/README.md#4-getting-started)
+- [Getting Started](./README.md#4-getting-started)
   - Prerequisites
   - Installation
-- [Usage](https://github.com/aaravarya27/To-Do-List/edit/main/README.md#5-usage)
-- [Customization](https://github.com/aaravarya27/To-Do-List/edit/main/README.md#6-customization)
+- [Usage](./README.md#5-usage)
+- [Customization](./README.md#6-customization)
 
 
 ## **1. Introduction**
