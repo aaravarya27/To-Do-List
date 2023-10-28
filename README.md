@@ -1,9 +1,9 @@
 # To-Do List Web Application Documentation
 
 ## Table of Contents
-- [Introduction](https://github.com/aaravarya27/To-Do-List/edit/main/README.md#1-introduction)
-- [Demo](https://github.com/aaravarya27/To-Do-List/edit/main/README.md#2-demo)
-- [Features](https://github.com/aaravarya27/To-Do-List/edit/main/README.md#3-features)
+- [Introduction](./README.md#1-introduction)
+- [Demo](./README.md#2-demo)
+- [Features](./README.md#3-features)
 - [Getting Started](https://github.com/aaravarya27/To-Do-List/edit/main/README.md#4-getting-started)
   - Prerequisites
   - Installation
